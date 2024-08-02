@@ -13,3 +13,32 @@ variable "managed_by" {
   type        = string
   default     = ""
 }
+
+variable "budgets" {
+  description = "List of budgets to be assigned under management group."
+  type = list(object({
+    name       = string
+    amount     = number
+    time_grain = string
+    start_date = string
+    end_date   = string
+    filter = object({
+      dimension = list(object({
+        name   = string
+        values = list(string)
+      }))
+      tag = list(object({
+        name   = string
+        values = list(string)
+      }))
+    })
+    notifications = list(object({
+      enabled        = bool
+      threshold      = number
+      operator       = string
+      threshold_type = string
+      contact_emails = list(string)
+    }))
+  }))
+  default = []
+}
