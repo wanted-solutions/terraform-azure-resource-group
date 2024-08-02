@@ -15,7 +15,7 @@ variable "managed_by" {
 }
 
 variable "budgets" {
-  description = "List of budgets to be assigned under management group."
+  description = "List of budgets to be assigned under resource group."
   type = list(object({
     name       = string
     amount     = number
